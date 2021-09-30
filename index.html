@@ -1,0 +1,217 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <link rel="stylesheet" href="css/estilos.css">
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-F3w7mX95PdgyTmZZMECAngseQB83DfGTowi0iMjiWaeVhAn4FJkqJByhZMI3AhiU" crossorigin="anonymous">
+    <title>Tarea2</title>
+</head>
+<body>
+    <div class="container">
+        <form id="formulario" class="row g-3 needs-validation"  novalidate>
+            <div class="col-md-6">
+                <label for="nombrecompleto" class="form-label">Nombre Completo</label>
+                <input type="text" class="form-control" id="nombrecompleto" placeholder="Nombre Completo" required>
+                <div class="valid-feedback">
+                    Completado
+                </div>
+                <div class="invalid-feedback">
+                    Campo Obligatorio
+                </div>
+            </div>
+
+            <div class="col-md-3">
+                <label for="rut" class="form-label">RUT</label>
+                <input type="text" class="form-control" id="rut" placeholder="Ingrese RUT" required oninput="checkRut(this)">
+                <div class="valid-feedback">
+                    Completado
+                </div>
+                <div class="invalid-feedback">
+                    Campo Obligatorio
+                </div>
+            </div>
+
+            <div class="col-md-3">
+                <label for="correo" class="form-label">Ingrese Correo</label>
+                <input type="email" class="form-control" id="correo" placeholder="Ingrese Correo" required>
+                <div class="valid-feedback">
+                    Completado
+                </div>
+                <div class="invalid-feedback">
+                    Campo Obligatorio
+                </div>
+            </div>
+            
+            <div class="col-md-3">
+                <label for="numero" class="form-label">Ingrese Telefono Movil</label>
+                <input type="tel" class="form-control" id="numero" pattern="[0-9]{9}" required>
+                <div class="valid-feedback">
+                    Completado
+                </div>
+                <div class="invalid-feedback">
+                    Campo Obligatorio
+                </div>
+            </div>
+            <div class="col-md-9"></div>
+
+            <div class="col-md-6" id="checklistLenguajes">
+                <p>Seleccione uno o más lenguajes de programación de interés:</p>
+
+                <div class="form-check">
+                    <input class="form-check-input" name="list1" type="checkbox" value="python" id="leng1">
+                    <label for="leng1" class="form-check-label">Python</label>
+                </div>
+
+                <div class="form-check">
+                    <input class="form-check-input" name="list1" type="checkbox" value="typescript" id="leng2">
+                    <label for="leng2" class="form-check-label">TypeScript</label>
+                </div>
+
+                <div class="form-check">
+                    <input class="form-check-input" name="list1" type="checkbox" value="cplus" id="leng3">
+                    <label for="leng3" class="form-check-label">C++</label>
+                </div>
+
+                <div class="form-check">
+                    <input class="form-check-input" name="list1" type="checkbox" value="csharp" id="leng4">
+                    <label for="leng4" class="form-check-label">C#</label>
+                </div>
+
+                <div class="form-check">
+                    <input class="form-check-input" name="list1" type="checkbox" value="php" id="leng5">
+                    <label for="leng5" class="form-check-label">PHP</label>
+                </div>
+
+                <div class="form-check">
+                    <input class="form-check-input" name="list1" type="checkbox" value="ruby" id="leng6">
+                    <label for="leng6" class="form-check-label">Ruby on Rails</label>
+                </div>
+
+                <div class="form-check">
+                    <input class="form-check-input" name="list1" type="checkbox" value="java" id="leng7">
+                    <label for="leng7" class="form-check-label">Java</label>
+                </div>
+
+                <div class="form-check">
+                    <input class="form-check-input" name="list1" type="checkbox" value=""r id="leng8">
+                    <label for="leng8" class="form-check-label">R</label>
+                </div>
+
+                <div class="form-check">
+                    <input class="form-check-input" name="list1" type="checkbox" value="groovy" id="leng9">
+                    <label for="leng9" class="form-check-label">Groovy</label>
+                </div>
+
+                <div class="form-check">
+                    <input class="form-check-input" name="list1" type="checkbox" value="go" id="leng10">
+                    <label for="leng10" class="form-check-label">Go</label>
+                </div>
+
+                <div class="form-check">
+                    <input class="form-check-input" name="list1" type="checkbox" value="swift" id="leng11">
+                    <label for="leng11" class="form-check-label">Swift</label>
+                </div>
+
+                <div class="form-check">
+                    <input class="form-check-input" name="list1" type="checkbox" value="kotlin" id="leng12">
+                    <label for="leng12" class="form-check-label">Kotlin</label>
+                </div>
+
+            </div>
+
+            <div class="col-md-3">
+                <p>Nivel de experiencia en programación</p>
+                <div class="form-check">
+                    <input type="radio" class="form-check-input" id="opc1" name="radio-stacked" required>
+                    <label for="opc1" class="form-check-label">Alto</label>
+                </div>
+                <div class="form-check">
+                    <input type="radio" class="form-check-input" id="opc2" name="radio-stacked" required>
+                    <label for="opc2" class="form-check-label">Medio</label>
+                    
+                </div>
+                <div class="form-check">
+                    <input type="radio" class="form-check-input" id="opc3" name="radio-stacked" required>
+                    <label for="opc3" class="form-check-label">Bajo</label>
+                    <div class="invalid-feedback">Seleccione uno</div>
+                </div>
+            </div>
+
+            <div class="col-md-3">
+                <p>Nivel de conocimiento sobre los siguientes lenguajes de programación: <br> (Valor entre 0 y 10)</p>
+                <label for="rango1" class="form-label">Python</label>
+                <input type="range" class="form-range" min="0" max="10" step="0.5" id="rango1">
+                <label for="rango2" class="form-label">Java</label>
+                <input type="range" class="form-range" min="0" max="10" step="0.5" id="rango2">
+                <label for="rango3" class="form-label">C++</label>
+                <input type="range" class="form-range" min="0" max="10" step="0.5" id="rango3">
+
+            </div>
+
+            <div class="col-md-4">
+                <p>Seleccione cuál de los siguientes cursos les ha tomado mayor dificultad: </p>
+
+                <div class="form-check">
+                    <input class="form-check-input" name="list2" type="checkbox" value="estructura" id="curso1">
+                    <label for="curso1" class="form-check-label">Estructura de Datos</label>
+                </div>
+
+                <div class="form-check">
+                    <input class="form-check-input" name="list2" type="checkbox" value="IA" id="curso2">
+                    <label for="curso2" class="form-check-label">Inteligencia Artificial</label>
+                </div>
+
+                <div class="form-check">
+                    <input class="form-check-input" name="list2" type="checkbox" value="interaccion" id="curso3">
+                    <label for="curso3" class="form-check-label">Interacción Humano-Computador</label>
+                </div>
+
+                <div class="form-check">
+                    <input class="form-check-input" name="list2" type="checkbox" value="so" id="curso4">
+                    <label for="curso4" class="form-check-label">Sistemas Operativos</label>
+                </div>
+                <div class="form-check">
+                    <input class="form-check-input" name="list2" type="checkbox" value="otros" id="curso5">
+                    <input type="text" class="form-control" id="otro" placeholder="Otro" disabled>
+                    <div class="invalid-feedback">
+                        Completar
+                    </div>
+
+                </div>
+            </div>
+
+            <div class="col-md-8">
+                <label for="textArea" class="form-label">Queremos saber su opinión sobre la escuela <br>(max de caracteres : 500)</label>
+                <textarea id="textArea" class="form-control" rows="7" placeholder="Complete porfavor" onKeyDown="limitText(this,500);" 
+                onKeyUp="limitText(this,500);" required></textarea>
+                <div class="invalid-feedback">
+                    Porfavor complete el area.
+                </div>
+            </div>
+
+            <div class="col-4">
+                <button class="btn btn-secondary" type="reset">Cancelar</button>
+            </div>
+
+            <div class="col-6">
+                <button class="btn btn-primary" name="submit" type="submit" value="submit">Enviar</button>
+            </div>
+
+        </form>
+    </div>
+
+
+    <!-- Option 1: Bootstrap Bundle with Popper -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-/bQdsTh/da6pkI1MST/rWKFNjaCP5gBSY4sEBT38Q/9RBh9AH40zEOg7Hlq2THRZ" crossorigin="anonymous"></script>
+    <!-- Option 2: Separate Popper and Bootstrap JS -->
+    <!--
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.3/dist/umd/popper.min.js" integrity="sha384-W8fXfP3gkOKtndU4JGtKDvXbO53Wy8SZCQHczT5FMiiqmQfUpWbYdTil/SxwZgAN" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/js/bootstrap.min.js" integrity="sha384-skAcpIdS7UcVUC05LJ9Dxay8AXcDYfBJqt1CJ85S/CFujBsIzCIv+l9liuYLaMQ/" crossorigin="anonymous"></script>
+    -->
+    <script data-main="js/inicio" src="js/require-jquery.js"></script>
+</body>
+</html>
