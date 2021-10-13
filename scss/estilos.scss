@@ -1,5 +1,60 @@
-$tamanyo: 20px;
+.material-icons {
+    font-family: 'Material Icons';
+    font-weight: normal;
+    font-style: normal;
+    font-size: 24px;  /* Preferred icon size */
+    display: inline-block;
+    line-height: 1;
+    text-transform: none;
+    letter-spacing: normal;
+    word-wrap: normal;
+    white-space: nowrap;
+    direction: ltr;
+  
+    /* Support for all WebKit browsers. */
+    -webkit-font-smoothing: antialiased;
+    /* Support for Safari and Chrome. */
+    text-rendering: optimizeLegibility;
+  
+    /* Support for Firefox. */
+    -moz-osx-font-smoothing: grayscale;
+  
+    /* Support for IE. */
+    font-feature-settings: 'liga';
+  }
 
-body{
-    font-size: $tamanyo;
+
+@mixin md-icon-size($size: 24px) {
+    font-size: $size;
+    height: $size;
+    width: $size;
+}
+
+#botonEditar button{
+    background-color: white;
+    width: 80px;
+    border: none;
+}
+
+img {
+    border: black solid 1px;
+    width: 150px;
+    height: 160px;
+}
+
+#formulario label{
+    font-weight: bold;
+}
+#formulario p{
+    font-weight: bold;
+    font-size: 50px;
+}
+
+#miniForm{
+    border: black solid 1px;
+}
+
+#btnagregar{
+    background-color: white;
+    border: none;
 }

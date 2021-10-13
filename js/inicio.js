@@ -19,109 +19,118 @@ define(["require", "exports", "jquery"], function (require, exports, jquery) {
             }, false);
         });
     })();
-});
-
-
-
-function clearFormulario(){
-    document.getElementById('formulario').reset();
-}
-
-function ocultar(){
-    document.getElementById('formulario').style.display= "none";
-    alert('Hemos recibido sus datos, pronto nos estaremos comunicando con usted');
-    setTimeout(()=>{
-        document.getElementById('formulario').style.display = "";
-        clearFormulario();
-        location.reload();
-    }, 2000);
-}
-
-function onSubmit() { //validacion de checklist
-  var field1 = $("input[name='list1']").serializeArray();
-  var field2 = $("input[name='list2']").serializeArray();
-  if (field1.length == 0){ 
-    alert('Seleccionar al menos un lenguaje de programación'); 
-    // cancel submit
-    return false;
-  }
-  else {
-    if (field2.length == 0){ 
-        alert('Seleccionar al menos un curso o la opcion de otros'); 
-        // cancel submit
-        return false;
-    }
-    else{
-        ocultar();
-    }
-  }
-}
-
-function limitText(limitField, limitNum) {
-    if (limitField.value.length > limitNum) {
-        limitField.value = limitField.value.substring(0, limitNum);
-    } 
-}
-
-$('#formulario').submit(onSubmit)
-
-function checkRut(rut) {
-    // Despejar Puntos
-    var valor = rut.value.replace('.','');
-    // Despejar Guión
-    valor = valor.replace('-','');
-    
-    // Aislar Cuerpo y Dígito Verificador
-    cuerpo = valor.slice(0,-1);
-    dv = valor.slice(-1).toUpperCase();
-    
-    // Formatear RUN
-    rut.value = cuerpo + '-'+ dv;
-    
-    // Si no cumple con el mínimo ej. (n.nnn.nnn)
-    if(cuerpo.length < 7) { rut.setCustomValidity("RUT Incompleto"); return false;}
-    
-    // Calcular Dígito Verificador
-    suma = 0;
-    multiplo = 2;
-    
-    // Para cada dígito del Cuerpo
-    for(i=1;i<=cuerpo.length;i++) {
-    
-        // Obtener su Producto con el Múltiplo Correspondiente
-        index = multiplo * valor.charAt(cuerpo.length - i);
-        
-        // Sumar al Contador General
-        suma = suma + index;
-        
-        // Consolidar Múltiplo dentro del rango [2,7]
-        if(multiplo < 7) { multiplo = multiplo + 1; } else { multiplo = 2; }
-  
-    }
-    
-    // Calcular Dígito Verificador en base al Módulo 11
-    dvEsperado = 11 - (suma % 11);
-    
-    // Casos Especiales (0 y K)
-    dv = (dv == 'K')?10:dv;
-    dv = (dv == 0)?11:dv;
-    
-    // Validar que el Cuerpo coincide con su Dígito Verificador
-    if(dvEsperado != dv) { rut.setCustomValidity("RUT Inválido"); return false; }
-    
-    // Si todo sale bien, eliminar errores (decretar que es válido)
-    rut.setCustomValidity('');
-}
-
-
-$(function () {  //ocultar input de texto mientras el checkbox no este marcado
-    $("#curso5").click(function () {
-        if ($(this).is(":checked")) {
-            $("#otro").removeAttr("disabled");
-            $("#otro").Attr("required");
-            $("#otro").focus();
-        } else {
-            $("#otro").attr("disabled", "disabled");
+    var defPersona = {
+        nombre: 'Pepito Perez',
+        edad: 43,
+        genero: 'male',
+        fechaNacimiento: "Septiembre 21, 1979",
+        correo: 'pepito.perez@email.com',
+        numeTelefono: 111111111,
+        rut: '11111111-1',
+        region: 'Valparaiso',
+        comuna: 'Vina del mar'
+    };
+    var defAntecedentes = [
+        { motivo: "Hospitalizado por bronquitis", fecha: "23/05/2005" },
+        { motivo: "Hospitalizado por intoxicacion", fecha: "23/05/2008" }
+    ];
+    var nombreDisp = document.getElementById("nombreDisp");
+    var fechaDisp = document.getElementById("fechaDisp");
+    var p1 = document.createElement("p");
+    var p2 = document.createElement("p");
+    p1.textContent = defPersona.nombre;
+    p2.textContent = defPersona.fechaNacimiento + ', ' + defPersona.edad + ' años';
+    nombreDisp === null || nombreDisp === void 0 ? void 0 : nombreDisp.appendChild(p1);
+    fechaDisp === null || fechaDisp === void 0 ? void 0 : fechaDisp.appendChild(p2);
+    //Funcion para hacer la dependencia de las comunas en base a la region
+    var comuna = document.querySelector('#comunaSelect');
+    var comunas_LosRios = ["Valdivia",
+        "Corral",
+        "Lanco",
+        "Los lagos",
+        "Mafil",
+        "Mariquina",
+        "Paillacu",
+        "Panguipulli",
+        "La union",
+        "Futrono",
+        "Lago Ranco",
+        "Rio Bueno"];
+    var comuna_Antofa = ["Antofagasta",
+        "Mejillones",
+        "Sierra Gorda",
+        "Taltal",
+        "Calama",
+        "Ollague",
+        "San Pedro de Atacama",
+        "Tocopilla",
+        "María Elena",
+    ];
+    $('#regionSelect').on('change', function () {
+        var selectValue = $(this).find(':selected').val();
+        $('#comunaSelect').empty();
+        if (selectValue == 'antofagasta') {
+            for (var i = 0; i < comuna_Antofa.length; i++) {
+                var opcion = document.createElement('option');
+                opcion.value = "i";
+                opcion.textContent = comuna_Antofa[i];
+                comuna === null || comuna === void 0 ? void 0 : comuna.appendChild(opcion);
+            }
+        }
+        else {
+            if (selectValue == 'losrios') {
+                for (var i = 0; i < comunas_LosRios.length; i++) {
+                    var opcion = document.createElement('option');
+                    opcion.value = "i";
+                    opcion.textContent = comunas_LosRios[i];
+                    comuna === null || comuna === void 0 ? void 0 : comuna.appendChild(opcion);
+                }
+            }
         }
     });
+    var btneditar = document.getElementById('btnEditar');
+    var btnagregar = document.getElementById('btnagregar');
+    var btneliminar = document.getElementsByClassName('btneliminar');
+    var btnCrear = document.getElementById('btnCrear');
+    btneditar === null || btneditar === void 0 ? void 0 : btneditar.addEventListener('click', editFormulario);
+    btnagregar === null || btnagregar === void 0 ? void 0 : btnagregar.addEventListener('click', crearAntecedente);
+    btnCrear === null || btnCrear === void 0 ? void 0 : btnCrear.addEventListener('click', agregarAntecedentes);
+    btneliminar === null || btneliminar === void 0 ? void 0 : btneliminar.addEventListener('click', eliminarAntecedente(btneliminar.id));
+    function editFormulario(e) {
+        var inputs = document.getElementsByClassName('inputMiniForm');
+        for (var i = 0; i < inputs.length; i++) {
+            inputs[i].removeAttribute('disabled');
+        }
+        var formulario = document.getElementById('formulario');
+        formulario === null || formulario === void 0 ? void 0 : formulario.removeAttribute('hidden');
+    }
+    function eliminarAntecedente(id) {
+        var listaAntecedent = document.getElementById(id);
+        listaAntecedent === null || listaAntecedent === void 0 ? void 0 : listaAntecedent.remove;
+    }
+    function agregarAntecedentes(e) {
+        e.preventDefault();
+        var li = document.createElement('li');
+        li.value = li.value + 1;
+        li.setAttribute('class', 'row');
+        var divAntecedente = document.createElement('div');
+        var divBtn = document.createElement('div');
+        var listaAntecedent = document.getElementById('listaAntecedentes');
+        listaAntecedent === null || listaAntecedent === void 0 ? void 0 : listaAntecedent.appendChild(li);
+        divAntecedente.setAttribute('class', 'col-md-10');
+        divBtn.setAttribute('class', 'col-md-1');
+        divBtn.innerHTML = "<button type=\"button\" id=\"eliminar" + li.value + "\" class=\"btneliminar\"> <span class=\"material-icons\">delete</span></button>";
+        var motivoAgregar = document.getElementById('motivoHosp');
+        var fechaAgregar = document.getElementById('FechaIngreso');
+        divAntecedente.textContent = motivoAgregar.value + ' ' + fechaAgregar.value;
+        li.appendChild(divAntecedente);
+        li.appendChild(divBtn);
+        var formulario = document.getElementById('formAntecedente');
+        formulario === null || formulario === void 0 ? void 0 : formulario.setAttribute('hidden', 'true');
+        formulario.reset();
+    }
+    function crearAntecedente() {
+        var formulario = document.getElementById('formAntecedente');
+        formulario === null || formulario === void 0 ? void 0 : formulario.removeAttribute('hidden');
+    }
 });
